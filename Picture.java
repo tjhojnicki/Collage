@@ -134,12 +134,7 @@ public void copy(/*sourceFile*/)
 
   }
 
-  public static void main(String[] args)
-  {
-     String fileName = FileChooser.pickAFile();
-     Picture pictObj = new Picture(fileName);
-     pictObj.explore();
-  }
+  
 
  // this } is the end of class Picture, put all new methods before this
 /**
@@ -192,17 +187,17 @@ public void mirrorHorz()
             
         }
     
-}
+    }
 }
 public void copySmaller(String file)
 {
- Picture thePicture= new Picture(file);
- picture original= new Picture (file);
+    Picture thePicture= new Picture(file);
+    Picture original= new Picture (file);
  
- Pixel sourcePixel= null;
- Pixel targetPixel=null;
- for(int sourceY=0,targetY=0;sourceY<thePicture.getHeight();sourceY+=2,targetY++)
- {
+    Pixel sourcePixel= null;
+    Pixel targetPixel=null;
+    for(int sourceY=0,targetY=0;sourceY<thePicture.getHeight();sourceY+=2,targetY++)
+    {
      for (int sourceX=0,targetX=0;sourceX<thePicture.getWidth();sourceX+=2,targetX++)
      {
         sourcePixel=thePicture.getPixel(sourceX,sourceY);
@@ -210,42 +205,56 @@ public void copySmaller(String file)
         targetPixel.setColor(sourcePixel.getColor());
         }
     
-}
-
-}
-
-public void Smaller(int multi)
-{
-    
-    int numberX=this.getWidth()/multi;
-    int numberY=this.getHeight()/multi;
- Pixel oriPixel= null;
- Pixel finalPixel=null;
-    
-if (numberX<=50)
-{
-    for( int x=0,xt=0;x<numberX;x+=2,xt++)
-    {
-        for(int y=0,yt=0;y<numberY;y+=2,yt++)
-        {
-            oriPixel=this.getPixel(x,y);
-            finalPixel=this.getPixel(xt,yt);
-            finalPixel.setColor(oriPixel.getColor());
     }
-}
-}
+
 }
 
-public void reursive(String file,int i)
+
+public void Recursive(int multi)
 {
-    
-    Picture thePic= new Picture(file);
-    if(thePic.width()<=2)
-        return;
+    int num=(int)Math.pow(2,multi);
+    int numberX=this.getWidth()/num;
+    int numberY=this.getHeight()/num;
+    Pixel oriPixel= null;
+    Pixel finalPixel=null;
+    if (numberX<=20||numberY<=15)
+    {return;
+    }
     else
     {
-        
+
+        for( int x=0,xt=0;x<numberX;x+=2,xt++)
+        {
+            for(int y=0,yt=0;y<numberY;y+=2,yt++)
+            {
+                oriPixel=this.getPixel(x,y);
+                finalPixel=this.getPixel(xt,yt);
+                finalPixel.setColor(oriPixel.getColor());
+                
+            }
+        }
+        Recursive(multi+1);
     }
+    
+
+}
+
+public void flip()
+{
+    Pixel oriPixel=null;
+    Pixel finalPixel= null;
+   
+    
+    for(int x=0,xFin=this.getWidth()-1; x<this.getWidth();x++,xFin--)
+    {
+            for(int y=0,yFin=this.getHeight()-1;y<this.getHeight();y++,yFin--)
+                {oriPixel=this.getPixel(x,y);
+                finalPixel=this.getPixel(xFin,yFin);
+                Color temp= oriPixel.getColor();
+                finalPixel.setColor(oriPixel.getColor());
+                oriPixel.setColor(temp);
+                }
+            }     
 }
 }
 
@@ -253,4 +262,3 @@ public void reursive(String file,int i)
 
 
 
-}
