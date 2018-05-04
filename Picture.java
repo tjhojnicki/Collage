@@ -239,7 +239,7 @@ public void Recursive(int multi)
 
 }
 
-public void flip()
+public void flipFirst()
 {
     Pixel oriPixel=null;
     Pixel finalPixel= null;
@@ -256,6 +256,30 @@ public void flip()
                 }
             }     
 }
+public void blend(String sourceFile)
+{
+    Picture image= new Picture(sourceFile);
+    
+    Pixel oriPixel=null;
+    Pixel finalPixel= null;
+   
+    
+    for(int x=0; x<this.getWidth();x++)
+    {
+            for(int y=0,yFin=this.getHeight()-1;y<this.getHeight();y++,yFin--)
+                {
+                if(x%2==0)
+                {
+                oriPixel=this.getPixel(x,y);
+                finalPixel=this.getPixel(xFin,yFin);
+                Color temp= oriPixel.getColor();
+                finalPixel.setColor(oriPixel.getColor());
+                oriPixel.setColor(temp);
+                }
+            }     
+}
+
+
 }
 
 
