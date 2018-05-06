@@ -1,0 +1,6 @@
+-The first picture is the original image of my beautiful car Bertha
+-the second picture is a blending of my car and then a dodge challenger hellcat where you take column of the picture of Bertha and then the next column is from the picture of the Hellcat and then it continues to do that until the  end of the picture
+-the third picture is where the original picture is grayscalled and then based on the intensity the color is changed to the rasta colors. It is based on the the intensity
+-the fourth picture takes the rasta filtered picture and then takes the fisrt half of the rasta filtered image and then it flips it upside down
+-the fifth image is the origanal rasta filtered image and then it mirrors it horizontally and then does the mirror vertical
+- the sixth and final image is the original picture of Bertha and then it repeats it recursively which take it half the size horizontally and vertically

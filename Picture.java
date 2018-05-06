@@ -100,19 +100,19 @@ public class Picture extends SimplePicture
                 pixelObj.setBlue((int)ave);
             }
         }
-public void copy(/*sourceFile*/)
+public void copy(String sourceFile)
 {
-    String sourceFile= ("images\\beach.jpg");
+    
     Picture sourcePicture = new Picture(sourceFile);
 
     Pixel sourcePixel= null;
     Pixel targetPixel= null;
 
-    for( int sourceX=0, targetX=0; 
+    for( int sourceX=0, targetX=4827; 
     sourceX< sourcePicture.getWidth();
     sourceX++,targetX++)
 {
-        for( int sourceY=0, targetY=0; 
+        for( int sourceY=0, targetY=1450; 
         sourceY< sourcePicture.getHeight();
         sourceY++,targetY++)
     {
@@ -266,21 +266,71 @@ public void blend(String sourceFile)
     
     for(int x=0; x<this.getWidth();x++)
     {
-            for(int y=0,yFin=this.getHeight()-1;y<this.getHeight();y++,yFin--)
+            for(int y=0,yFin=0;y<this.getHeight();y++,yFin++)
                 {
                 if(x%2==0)
                 {
                 oriPixel=this.getPixel(x,y);
-                finalPixel=this.getPixel(xFin,yFin);
+                finalPixel=this.getPixel(x,y);
                 Color temp= oriPixel.getColor();
                 finalPixel.setColor(oriPixel.getColor());
-                oriPixel.setColor(temp);
+                
+                }
+                if(x%2==1)
+                {
+                oriPixel=image.getPixel(x,y);
+                finalPixel=this.getPixel(x,y);
+                Color temp= oriPixel.getColor();
+                finalPixel.setColor(oriPixel.getColor());
+              
                 }
             }     
+        }
+}
+
+public void filter()
+{
+   
+   int r,g,b;
+   double ave,total;
+   //!!!! again, copies all the pixels into the array !!!!!
+   Pixel[] pixelArray = this.getPixels();
+    double max=0,min=255;
+
+            for(Pixel pixelObj: pixelArray){
+                r=pixelObj.getRed();
+                g=pixelObj.getGreen();
+                b=pixelObj.getBlue();
+
+                total= r+g+b;
+                ave=total/3;
+                if(ave <30)
+                {
+                    pixelObj.setRed(222);
+                    pixelObj.setGreen(42);
+                    pixelObj.setBlue(42);
+                 }
+                else if(ave<130)
+                   { pixelObj.setRed(57);
+                    pixelObj.setGreen(188);
+                    pixelObj.setBlue(83);
+                  }
+                  else if(ave<190)
+                  { pixelObj.setRed(233);
+                    pixelObj.setGreen(167);
+                    pixelObj.setBlue(52);
+                }
+                  else 
+                   { pixelObj.setRed(227);
+                    pixelObj.setGreen(233);
+                    pixelObj.setBlue(36);
+                  }
+            }
+        }
+    
 }
 
 
-}
 
 
 
